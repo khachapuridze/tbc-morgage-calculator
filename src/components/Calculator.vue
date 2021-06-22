@@ -11,11 +11,7 @@
 			<div class="calculator-content">
 				<div
 					class="tabs"
-					:style="
-						selectedOption === 'loan' && $mq === 'phone'
-							? 'transform: translate3d(-75px, 0px, 0px);'
-							: ''
-					"
+					:class="{ 'transform-mobile': selectedOption === 'loan' }"
 				>
 					<div
 						class="tab tbc-bold"
@@ -40,9 +36,8 @@
 				<!-- mobile swiper Calculator -->
 				<swiper
 					ref="calcSwiper"
-					class="calcSwiper"
+					class="calcSwiper mobile-calcSwiper"
 					:options="swiperOptions"
-					v-if="$mq === 'phone'"
 					:class="{ active2: selectedOption === 'loan' }"
 				>
 					<swiper-slide>
@@ -54,12 +49,12 @@
 
 							<div class="calculator-inputs flex-box">
 								<div class="relative input-label">
-									<vue-autonumeric
+									<input
+										type="number"
 										class="br-6 font-14 calculator-input"
 										:class="[{ validated: calculator.income }]"
-										:options="{ allowDecimalPadding: false }"
 										v-model="calculator.income"
-									></vue-autonumeric>
+									/>
 
 									<label for="personal" class="font-14 placeholder"
 										>Type Income</label
@@ -201,12 +196,12 @@
 
 							<div class="calculator-inputs flex-box">
 								<div class="relative input-label">
-									<vue-autonumeric
+									<input
+										type="number"
 										class="br-6 font-14 calculator-input"
 										:class="[{ validated: calculator.income }]"
-										:options="{ allowDecimalPadding: false }"
 										v-model="calculator.income"
-									></vue-autonumeric>
+									/>
 
 									<label for="personal" class="font-14 placeholder"
 										>Type Income</label
@@ -344,7 +339,7 @@
 				</swiper>
 
 				<!-- desktop version -->
-				<div v-else class="calc-content-wrapper">
+				<div class="calc-content-wrapper">
 					<div class="content" :class="{ active: calculated }">
 						<div class="desc tbc-medium">
 							Calculate the amount of the loan will pay off based on your income
@@ -352,12 +347,12 @@
 
 						<div class="calculator-inputs flex-box">
 							<div class="relative input-label">
-								<vue-autonumeric
+								<input
+									type="number"
 									class="br-6 font-14 calculator-input"
 									:class="[{ validated: calculator.income }]"
-									:options="{ allowDecimalPadding: false }"
 									v-model="calculator.income"
-								></vue-autonumeric>
+								/>
 
 								<label for="personal" class="font-14 placeholder"
 									>Type Income</label
@@ -490,13 +485,8 @@
 </template>
 
 <script>
-	import VueAutonumeric from 'vue-autonumeric/src/components/VueAutonumeric.vue';
-
 	export default {
 		props: ['contentData', 'evenOdd'],
-		components: {
-			VueAutonumeric,
-		},
 		computed: {
 			calcSwiper() {
 				return this.$refs.calcSwiper.$swiper;
@@ -626,7 +616,12 @@
 		font-size: 12px;
 		color: red;
 	}
-
+	.calc-content-wrapper {
+		display: block;
+	}
+	.mobile-calcSwiper {
+		display: none;
+	}
 	.modal-input p {
 		color: #737373;
 		margin-top: 21px;
@@ -726,6 +721,9 @@
 		align-items: center;
 		transform: translate3d(0px, 0px, 0px);
 		transition: 850ms;
+	}
+	.tabs.transform-mobile {
+		transform: unset;
 	}
 	.tabs .tab {
 		padding: 16px 34px;
@@ -907,7 +905,16 @@
 			margin-left: 0;
 		}
 	}
-	@media (max-width: 768px) {
+	@media (max-width: 767px) {
+		.calc-content-wrapper {
+			display: none;
+		}
+		.tabs.transform-mobile {
+			transform: translate3d(-75px, 0px, 0px);
+		}
+		.mobile-calcSwiper {
+			display: block;
+		}
 		.input-label {
 			max-width: 47%;
 			margin-bottom: 33px;
