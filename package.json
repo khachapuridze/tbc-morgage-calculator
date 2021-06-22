@@ -13,7 +13,6 @@
     "vue-autonumeric": "^1.2.6",
     "swiper": "^6.6.1",
     "vue-mq": "^1.0.1",
-    "element-ui": "^2.15.0",
     "vue-awesome-swiper": "^4.1.1"
   },
   "devDependencies": {

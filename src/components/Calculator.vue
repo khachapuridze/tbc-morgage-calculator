@@ -83,29 +83,25 @@
 									<label for="personal2" class="font-14 placeholder"
 										>Select the term in years:</label
 									>
-									<div class="year-choice">
-										<el-form
-											ref="ruleForm"
-											class="form-container flex-box between"
+									<div
+										class="year-choice"
+										@click="openDropdown = !openDropdown"
+									>
+										<div class="selected-option">{{ selectedYear }}</div>
+
+										<div
+											class="dropdown-options"
+											:class="{ open: openDropdown }"
 										>
-											<div class="form-col form-col-left">
-												<el-form-item prop="type" class="input-box">
-													<el-select
-														v-model="ruleForm.year"
-														:placeholder="years[0].label"
-														popper-class="form-dropdown-list"
-														:popper-append-to-body="false"
-													>
-														<el-option
-															v-for="item in years"
-															:key="item.value"
-															:label="item.label"
-															:value="item.value"
-														></el-option>
-													</el-select>
-												</el-form-item>
+											<div
+												class="option-item"
+												v-for="item in years"
+												:key="item.value"
+												@click="selectItem(item.value)"
+											>
+												{{ item.label }}
 											</div>
-										</el-form>
+										</div>
 									</div>
 								</div>
 
@@ -235,29 +231,25 @@
 									<label for="personal2" class="font-14 placeholder"
 										>Select the term in years:</label
 									>
-									<div class="year-choice">
-										<el-form
-											ref="ruleForm"
-											class="form-container flex-box between"
+									<div
+										class="year-choice"
+										@click="openDropdown = !openDropdown"
+									>
+										<div class="selected-option">{{ selectedYear }}</div>
+
+										<div
+											class="dropdown-options"
+											:class="{ open: openDropdown }"
 										>
-											<div class="form-col form-col-left">
-												<el-form-item prop="type" class="input-box">
-													<el-select
-														v-model="ruleForm.year"
-														:placeholder="years[0].label"
-														popper-class="form-dropdown-list"
-														:popper-append-to-body="false"
-													>
-														<el-option
-															v-for="item in years"
-															:key="item.value"
-															:label="item.label"
-															:value="item.value"
-														></el-option>
-													</el-select>
-												</el-form-item>
+											<div
+												class="option-item"
+												v-for="item in years"
+												:key="item.value"
+												@click="selectItem(item.value)"
+											>
+												{{ item.label }}
 											</div>
-										</el-form>
+										</div>
 									</div>
 									<!--              <div class="error-label font-12" :class="{error: hasPersonalNumberError && isClicked}">{{ !registration.personal_number ?  'Personal Number is Important' : registration.personal_number.length < 11 ? 'Personal Number Must be 11' : '' }}</div>-->
 								</div>
@@ -389,29 +381,19 @@
 								<label for="personal2" class="font-14 placeholder"
 									>Select the term in years:</label
 								>
-								<div class="year-choice">
-									<el-form
-										ref="ruleForm"
-										class="form-container flex-box between"
-									>
-										<div class="form-col form-col-left">
-											<el-form-item prop="type" class="input-box">
-												<el-select
-													v-model="ruleForm.year"
-													:placeholder="years[0].label"
-													popper-class="form-dropdown-list"
-													:popper-append-to-body="false"
-												>
-													<el-option
-														v-for="item in years"
-														:key="item.value"
-														:label="item.label"
-														:value="item.value"
-													></el-option>
-												</el-select>
-											</el-form-item>
+								<div class="year-choice" @click="openDropdown = !openDropdown">
+									<div class="selected-option">{{ selectedYear }}</div>
+
+									<div class="dropdown-options" :class="{ open: openDropdown }">
+										<div
+											class="option-item"
+											v-for="item in years"
+											:key="item.value"
+											@click="selectItem(item.value)"
+										>
+											{{ item.label }}
 										</div>
-									</el-form>
+									</div>
 								</div>
 							</div>
 
@@ -533,7 +515,10 @@
 					income: '',
 				},
 				selectedCurrency: 'gel',
+				selectedYear: '1',
+
 				selectedOption: 'income',
+				openDropdown: false,
 				years: [
 					{
 						value: '1',
@@ -614,6 +599,10 @@
 						this.calcSwiper.slideTo(0, 800, false);
 						break;
 				}
+			},
+			selectItem(val) {
+				this.selectedYear = val;
+				// this.openDropdown = false;
 			},
 		},
 	};
@@ -1005,49 +994,62 @@
 
 <style>
 	/* gloabal styles for elemnt ui dropdown */
-	.calculator .el-input__inner {
-		background-color: #f4f4f4;
-		border: unset;
-		height: 60px;
-		border: 1px solid #dadada;
-		padding-left: 21px;
-		width: 100%;
-		border-radius: 6px;
-		color: #737373;
-	}
-	.calculator .el-input__inner::placeholder {
-		color: #737373;
-	}
-	.calculator .el-form.form-container {
-		height: 60px;
-	}
-	.calculator .el-select-dropdown {
-		background-color: #f4f4f4;
-	}
-	body[data-theme='night'] .calculator .el-select-dropdown {
-		background-color: var(--gray);
-		border-color: var(--primary);
-	}
 	.calculator .year-choice {
 		height: 34px;
 		border-radius: 6px;
-	}
-	.calculator .el-select,
-	.calculator .el-select input {
-		width: 110px;
-		height: 34px;
 
-		border-radius: 6px;
-		border: unset;
+		min-width: 100px;
+		display: flex;
+		align-items: center;
+		padding: 0 20px;
+		border: 1px solid var(--border);
+	}
+	.dropdown-options::-webkit-scrollbar {
+		width: 4px;
+		background: transparent;
+		border-radius: 4px;
+		border-left: 1px solid transparent;
+		border-right: 1px solid transparent;
+		background-clip: padding-box;
+	}
+	.dropdown-options::-webkit-scrollbar-thumb {
+		background: linear-gradient(
+			to bottom,
+			#26dffe 0%,
+			#21cdf5 30%,
+			#0dbff4 75%,
+			#00aeef 100%
+		);
+		border-radius: 4px;
+		border-left: 1px solid transparent;
+		border-right: 1px solid transparent;
+	}
+	.calculator .year-choice .dropdown-options {
+		position: absolute;
+		top: 40px;
+		min-width: 100px;
+		padding: 0 20px;
+		left: 0;
+		background: var(--order-kit-inputs);
+		border: 1px solid var(--border);
+		opacity: 0;
+		visibility: hidden;
+		max-height: 200px;
+		overflow: auto;
+		transition: 0.6s ease;
+	}
+	.calculator .year-choice .dropdown-options.open {
+		opacity: 1;
+		visibility: visible;
+	}
+	.year-choice .option-item {
+		padding: 10px 0px;
 	}
 	.calculator .form-col.form-col-left {
 		width: 100%;
 	}
-	.calculator .el-popper[x-placement^='bottom'] .popper__arrow {
-		display: none;
-	}
 	@media (max-width: 767px) {
-		.calculator .el-select-dropdown__wrap {
+		.calculator .year-choice .dropdown-options {
 			max-height: 80px;
 			overflow: auto;
 		}
