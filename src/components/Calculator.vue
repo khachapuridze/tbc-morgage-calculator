@@ -1012,6 +1012,7 @@
 		border-right: 1px solid transparent;
 		background-clip: padding-box;
 	}
+
 	.dropdown-options::-webkit-scrollbar-thumb {
 		background: linear-gradient(
 			to bottom,
