@@ -643,7 +643,7 @@
 	.input-label .placeholder {
 		position: absolute;
 		pointer-events: none;
-		top: 55%;
+		top: 50%;
 		left: 26px;
 		color: #737373;
 		transform: translate(-0px, -50%);
