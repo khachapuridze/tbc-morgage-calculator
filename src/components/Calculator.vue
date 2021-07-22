@@ -9,7 +9,6 @@
 			</div>
 
 			<div class="calculator-content">
-				{{ tabWidth }}
 				<div
 					class="tabs"
 					id="tabs"
