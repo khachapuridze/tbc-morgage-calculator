@@ -32,6 +32,72 @@ body[data-theme='night'] {
 	color: #dadada;
 }
 
+/* Font Styles */
+@font-face {
+	font-family: 'TBC-black';
+	src: url('./font/TBCSailec-Black.eot');
+	src: url('./font/TBCSailec-Black.eot?#iefix') format('embedded-opentype'),
+		url('./font/TBCSailec-Black.woff2') format('woff2'),
+		url('./font/TBCSailec-Black.woff') format('woff'),
+		url('./font/TBCSailec-Black.ttf') format('truetype'),
+		url('./font/TBCSailec-Black.svg#TBCSailec-Black') format('svg');
+	font-weight: 900;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'TBC-Regular';
+	src: url('./font/TBCSailec-Regular.eot');
+	src: url('./font/TBCSailec-Regular.eot?#iefix') format('embedded-opentype'),
+		url('./font/TBCSailec-Regular.woff2') format('woff2'),
+		url('./font/TBCSailec-Regular.woff') format('woff'),
+		url('./font/TBCSailec-Regular.ttf') format('truetype'),
+		url('./font/TBCSailec-Regular.svg#TBCSailec-Regular') format('svg');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'TBC-Medium';
+	src: url('./font/TBCSailec-Medium.eot');
+	src: url('./font/TBCSailec-Medium.eot?#iefix') format('embedded-opentype'),
+		url('./font/TBCSailec-Medium.woff2') format('woff2'),
+		url('./font/TBCSailec-Medium.woff') format('woff'),
+		url('./font/TBCSailec-Medium.ttf') format('truetype'),
+		url('./font/TBCSailec-Medium.svg#TBCSailec-Medium') format('svg');
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'TBC-Bold';
+	src: url('./font/TBCSailec-Bold.eot');
+	src: url('./font/TBCSailec-Bold.eot?#iefix') format('embedded-opentype'),
+		url('./font/TBCSailec-Bold.woff2') format('woff2'),
+		url('./font/TBCSailec-Bold.woff') format('woff'),
+		url('./font/TBCSailec-Bold.ttf') format('truetype'),
+		url('./font/TBCSailec-Bold.svg#TBCSailec-Bold') format('svg');
+	font-weight: bold;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'TBC-Light';
+	src: url('./font/TBCSailec-Light.eot');
+	src: url('./font/TBCSailec-Light.eot?#iefix') format('embedded-opentype'),
+		url('./font/TBCSailec-Light.woff2') format('woff2'),
+		url('./font/TBCSailec-Light.woff') format('woff'),
+		url('./font/TBCSailec-Light.ttf') format('truetype'),
+		url('./font/TBCSailec-Light.svg#TBCSailec-Light') format('svg');
+	font-weight: 300;
+	font-style: normal;
+	font-display: swap;
+}
+
 * {
 	font-family: 'TBC-Medium';
 	font-size: 16px;
@@ -95,8 +161,20 @@ nav {
 	text-transform: uppercase;
 	font-feature-settings: 'case' on;
 }
+.tbc-black {
+	font-family: 'TBC-black';
+}
+.tbc-regular {
+	font-family: 'TBC-Regular';
+}
+.tbc-medium {
+	font-family: 'TBC-Medium';
+}
 .tbc-bold {
 	font-family: 'TBC-Bold';
+}
+.tbc-light {
+	font-family: 'TBC-Light';
 }
 .container {
 	max-width: 1170px;

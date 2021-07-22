@@ -9,8 +9,11 @@
 			</div>
 
 			<div class="calculator-content">
+				{{ tabWidth }}
 				<div
 					class="tabs"
+					id="tabs"
+					:style="{ transform: `translate3d(${-tabWidth}px, 0px, 0px)` }"
 					:class="{ 'transform-mobile': selectedOption === 'loan' }"
 				>
 					<div
@@ -20,7 +23,7 @@
 						}"
 						@click="changeCalculatorType('income')"
 					>
-						According to the income
+						სესხზე დაყრდნობით
 					</div>
 					<div
 						class="tab tbc-bold"
@@ -491,6 +494,13 @@
 			calcSwiper() {
 				return this.$refs.calcSwiper.$swiper;
 			},
+			tabWidth() {
+				if (this.selectedOption === 'loan') {
+					return document.getElementById('tabs').offsetWidth / 2.8;
+				} else {
+					return 0;
+				}
+			},
 		},
 		data() {
 			const self = this;
@@ -883,7 +893,16 @@
 			max-width: 100px;
 		}
 	}
-
+	@media (min-width: 415px) {
+		.tabs.transform-mobile {
+			transform: translate3d(-75px, 0px, 0px) !important;
+		}
+	}
+	@media (min-width: 768px) {
+		.tabs.transform-mobile {
+			transform: unset !important;
+		}
+	}
 	@media (max-width: 1023px) {
 		.calculator {
 			padding-top: 89px;
