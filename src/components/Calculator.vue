@@ -351,7 +351,7 @@
 							<div class="relative input-label">
 								<input
 									type="number"
-									class="br-6 font-14 calculator-input"
+									class="br-6 font-14 calculator-input error"
 									:class="[{ validated: calculator.income }]"
 									v-model="calculator.income"
 								/>
@@ -359,6 +359,7 @@
 								<label for="personal" class="font-14 placeholder"
 									>Type Income</label
 								>
+								<div class="placeholder error-message">error</div>
 								<div class="currencies">
 									<div
 										class="currency"
@@ -617,6 +618,9 @@
 	}
 	.relative {
 		position: relative;
+	}
+	.input-label input:focus {
+		outline: none;
 	}
 	.input-label .placeholder.error-message {
 		top: unset;
